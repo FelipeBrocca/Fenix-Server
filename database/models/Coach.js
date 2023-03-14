@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const playersSchema = mongoose.Schema({
+const coachSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -49,6 +49,6 @@ const playersSchema = mongoose.Schema({
     }
 })
 
-const Player = mongoose.model('Player', playersSchema);
+const Coach = mongoose.model('Coach', coachSchema);
 
-export default Player;
+export default Coach;

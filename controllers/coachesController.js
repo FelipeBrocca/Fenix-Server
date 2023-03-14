@@ -1,34 +1,34 @@
-import Player from "../database/models/Player.js";
+import Coach from "../database/models/Coach.js";
 import {
     uploadImage,
     deleteImage
 } from "../libs/cloudinary.js";
 import fs from 'fs-extra';
 
-export const playersController = {
-    getPlayers: async (req, res) => {
+export const coachesController = {
+    getCoaches: async (req, res) => {
         try {
-            const players = await Player.find();
+            const coaches = await Coach.find();
 
-            res.status(200).json(players)
+            res.status(200).json(coaches)
         } catch (error) {
             res.status(404).json({
                 message: error.message
             })
         }
     },
-    playerDetail: async (req, res) => {
+    coachDetail: async (req, res) => {
         try {
-            const player = await Player.findById(req.params.id);
+            const coach = await Coach.findById(req.params.id);
 
-            res.status(200).json(player)
+            res.status(200).json(coach)
         } catch (error) {
             res.status(404).json({
                 message: error.message
             })
         }
     },
-    newPlayer: async (req, res) => {
+    newCoach: async (req, res) => {
 
         try {
             const {
@@ -55,7 +55,7 @@ export const playersController = {
                 await fs.remove(req.files.image.tempFilePath)
             }
 
-            const newPlayer = new Player({
+            const newCoach = new Coach({
                 name,
                 image,
                 birth,
@@ -69,22 +69,22 @@ export const playersController = {
                 createdAt
             });
 
-            await newPlayer.save();
+            await newCoach.save();
 
-            res.status(201).json(newPlayer)
+            res.status(201).json(newCoach)
         } catch (error) {
             res.status(409).json({
                 message: error.message
             })
         }
     },
-    updatePlayer: async (req, res) => {
+    updateCoach: async (req, res) => {
 
         try {
-            const playerToUpdate = await Player.findById(req.params.id)
+            const coachToUpdate = await Coach.findById(req.params.id)
 
             if (req.files?.image) {
-                await deleteImage(playerToUpdate.image.public_id)
+                await deleteImage(coachToUpdate.image.public_id)
 
                 let newImage;
                 
@@ -97,19 +97,19 @@ export const playersController = {
 
                 await fs.remove(req.files.image.tempFilePath)
 
-                playerToUpdate.image = newImage
+                coachToUpdate.image = newImage
             }
 
-            const playerUpdated = {
+            const coachUpdated = {
                 ...req.body,
-                image: playerToUpdate.image
+                image: coachToUpdate.image
             }
 
-            const updatedPlayer = await Player.findByIdAndUpdate(req.params.id, playerUpdated, {
+            const updatedCoach = await Coach.findByIdAndUpdate(req.params.id, coachUpdated, {
                 new: true
             })
 
-            res.status(201).json(updatedPlayer)
+            res.status(201).json(updatedCoach)
         } catch (error) {
             res.status(409).json({
                 message: error.message
@@ -117,12 +117,12 @@ export const playersController = {
         }
 
     },
-    deletePlayer: async (req, res) => {
+    deleteCoach: async (req, res) => {
         try {
-            const playerRemoved = await Player.findByIdAndDelete(req.params.id);
+            const coachRemoved = await Coach.findByIdAndDelete(req.params.id);
 
-            if (playerRemoved.image.public_id) {
-                await deleteImage(playerRemoved.image.public_id)
+            if (coachRemoved.image.public_id) {
+                await deleteImage(coachRemoved.image.public_id)
             }
             
             res.status(204)
