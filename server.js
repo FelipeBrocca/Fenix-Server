@@ -5,7 +5,6 @@ import cors from 'cors'
 import { corsOptions } from './database/config/corsOptions.js';
 import bodyParser from 'body-parser'
 import fileUpload from 'express-fileupload';
-import mongoose from 'mongoose';
 import { connectDB } from './database/database.js';
 
 const app = express()
@@ -23,11 +22,15 @@ app.use(fileUpload({
 
 
 import mainRoutes from './routes/root.js'
+import authRoutes from './routes/authRoutes.js'
+import usersRoutes from './routes/userRoutes.js'
 import playersRoutes from './routes/playersRoutes.js'
 import coachesRoutes from './routes/coachesRoutes.js'
 import trainingsRoutes from './routes/trainingsRoutes.js'
 
 app.use('/', mainRoutes)
+app.use('/auth', authRoutes)
+app.use('/users', usersRoutes)
 app.use('/players-hockey', playersRoutes)
 app.use('/coaches-hockey', coachesRoutes)
 app.use('/trainings-hockey', trainingsRoutes)
@@ -41,6 +44,7 @@ app.all('*', (req, res) => {
         res.type('txt').send('404 Not Found')
     }
 })
+
 
 connectDB()
     .then(() => {

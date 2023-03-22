@@ -1,6 +1,9 @@
 import express from 'express';
 const router = express.Router()
 import { coachesController } from '../controllers/coachesController.js'
+import verifyJWT from '../middleware/verifyJWT.js';
+
+router.use(verifyJWT)
 
 
 router.get('/', coachesController.getCoaches)
