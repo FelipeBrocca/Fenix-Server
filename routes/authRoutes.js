@@ -1,14 +1,18 @@
 import express from 'express';
 const router = express.Router()
-import { login, refresh, logout } from '../controllers/authController.js'
+import {
+    login,
+    loggedIn, 
+    logout
+} from '../controllers/authController.js'
 import loginLimiter from '../middleware/loginLimiter.js';
 
 
 router.route('/')
     .post(loginLimiter, login)
 
-router.route('/refresh')
-    .get(refresh)
+router.route('/loggedIn')
+    .get(loggedIn)
 
 router.route('/logout')
     .post(logout)
