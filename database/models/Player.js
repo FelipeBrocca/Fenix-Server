@@ -22,6 +22,10 @@ const playersSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    role2: {
+        type: String,
+        required: false
+    },
     phone: {
         type: String,
         required: true
