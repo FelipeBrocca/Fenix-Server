@@ -31,32 +31,25 @@ export const playersController = {
     newPlayer: async (req, res) => {
 
         try {
-            const {
-                name,
-                birth,
-                dni,
-                club,
-                role,
-                role2,
-                phone,
-                ensurance,
-                pay,
-                active,
-                createdAt
-            } = req.body;
+            const { name, birth, dni, club, role: roleString, phone, ensurance, pay, active, createdAt } = req.body;
+            const role = JSON.parse(roleString);
 
             let image;
 
             if (req.files?.image) {
+
                 const imagePosted = await uploadImage(req.files.image.tempFilePath)
+                
                 image = {
                     url: imagePosted.secure_url,
                     public_id: imagePosted.public_id
                 }
+
                 await fs.remove(req.files.image.tempFilePath)
             } else {
                 image = {
-                    url: 'https://res.cloudinary.com/dlah9v2do/image/upload/v1679335452/1200px-Breezeicons-actions-22-im-user.svg_ycuwsn.png'
+                    url: 'https://res.cloudinary.com/dlah9v2do/image/upload/v1680549252/FotosPerfil/opkjqvstjmumhgz2azvw.png',
+                    public_id: 'FotosPerfil/opkjqvstjmumhgz2azvw'
                 }
             }
 
@@ -67,7 +60,6 @@ export const playersController = {
                 dni,
                 club,
                 role,
-                role2,
                 phone,
                 ensurance,
                 pay,
@@ -88,12 +80,11 @@ export const playersController = {
 
         try {
             const playerToUpdate = await Player.findById(req.params.id)
-
             if (req.files?.image) {
                 await deleteImage(playerToUpdate.image.public_id)
 
                 let newImage;
-                
+
                 const imageUpdate = await uploadImage(req.files.image.tempFilePath)
 
                 newImage = {
@@ -106,8 +97,11 @@ export const playersController = {
                 playerToUpdate.image = newImage
             }
 
+            let roleUpdate = JSON.parse(req.body.role)
+
             const playerUpdated = {
                 ...req.body,
+                role: roleUpdate,
                 image: playerToUpdate.image
             }
 
@@ -126,13 +120,13 @@ export const playersController = {
     deletePlayer: async (req, res) => {
         try {
             const playerRemoved = await Player.findById(req.params.id);
-            
-            if (playerRemoved.image.public_id && playerRemoved.image.url !== 'https://res.cloudinary.com/dlah9v2do/image/upload/v1679335452/1200px-Breezeicons-actions-22-im-user.svg_ycuwsn.png') {
+
+            if (playerRemoved.image.public_id && playerRemoved.image.url !== 'https://res.cloudinary.com/dlah9v2do/image/upload/v1680549252/FotosPerfil/opkjqvstjmumhgz2azvw.png') {
                 await deleteImage(playerRemoved.image.public_id)
             }
 
-            await Player.deleteOne({_id: playerRemoved._id})
-            
+            await Player.deleteOne({ _id: playerRemoved._id })
+
             res.status(204).send()
         } catch (error) {
             res.status(409).json({

@@ -30,7 +30,7 @@ export const login = async (req, res) => {
         { expiresIn: '1d' }
     )
 
-    res.cookie('jwt', accessToken, {
+    res.cookie('FJaCwInT', accessToken, {
         httpOnly: true,
         secure: true,
         sameSite: 'None',
@@ -41,7 +41,7 @@ export const login = async (req, res) => {
 
 export const loggedIn = (req, res) => {
 try {
-    const token = req.cookies.jwt
+    const token = req.cookies.FJaCwInT
 
     if(!token) return res.json(false)
 
@@ -54,8 +54,8 @@ try {
 
 export const logout = (req, res) => {
     const cookies = req.cookies
-    if (!cookies?.jwt) return res.sendStatus(204)
-    res.clearCookie('jwt', {
+    if (!cookies?.FJaCwInT) return res.sendStatus(204)
+    res.clearCookie('FJaCwInT', {
         httpOnly: true,
         sameSite: 'None',
         secure: true
