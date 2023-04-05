@@ -7,7 +7,7 @@ const playersSchema = mongoose.Schema({
     },
     image: Object,
     birth: {
-        type: String,
+        type: Date,
         required: true
     },
     dni: {
@@ -27,8 +27,15 @@ const playersSchema = mongoose.Schema({
         required: true
     },
     ensurance: {
-        type: Boolean,
-        default: false,
+        type: Object,
+        default: {
+            secured: false,
+            paysec: false,
+            until: {
+                month: '',
+                year: ''
+            }
+        },
         required: true
     },
     pay: {
