@@ -103,6 +103,7 @@ export const playersController = {
             let roleUpdate = JSON.parse(req.body.role)
             const ensuranceUpadted = JSON.parse(req.body.ensurance)
             const payUpdated = JSON.parse(req.body.pay)
+            const createdAtsame = JSON.parse(req.body.createdAt)
 
 
             const playerUpdated = {
@@ -110,6 +111,7 @@ export const playersController = {
                 role: roleUpdate,
                 ensurance: ensuranceUpadted,
                 pay: payUpdated,
+                createdAt: createdAtsame,
                 image: playerToUpdate.image
             }
 
