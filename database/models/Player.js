@@ -39,10 +39,24 @@ const playersSchema = mongoose.Schema({
         required: true
     },
     pay: {
-        type: Boolean,
+        type: Object,
+        default: {
+            monthlyFee: false,
+            trainingFee: false,
+            monthlyUntil: {
+                month: '',
+                year: '',
+            },
+            trainPayed: 0,
+            createdAt: {
+                day: new Date().getDate(),
+                month: new Date().getMonth() + 1,
+                year: new Date().getFullYear()
+            }
+        },
         required: true
     },
-    active:{
+    active: {
         type: Boolean,
         default: true
     },
