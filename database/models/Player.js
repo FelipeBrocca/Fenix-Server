@@ -43,11 +43,8 @@ const playersSchema = mongoose.Schema({
         default: {
             monthlyFee: false,
             trainingFee: false,
-            monthlyUntil: {
-                month: '',
-                year: '',
-            },
-            trainPayed: 0,
+            monthsPayed: [],
+            trainsPayed: 0,
             createdAt: {
                 day: new Date().getDate(),
                 month: new Date().getMonth() + 1,
