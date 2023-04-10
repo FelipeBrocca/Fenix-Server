@@ -31,7 +31,7 @@ export const playersController = {
     newPlayer: async (req, res) => {
 
         try {
-            const { name, birth, dni, club, role: roleString, phone, ensurance: ensuranceObject, pay: payObject, active, createdAt } = req.body;
+            const { name, birth, dni, club, role: roleString, phone, ensurance: ensuranceObject, pay: payObject, createdAt } = req.body;
             const role = JSON.parse(roleString);
             const ensurance = JSON.parse(ensuranceObject)
             const pay = JSON.parse(payObject)
@@ -66,7 +66,6 @@ export const playersController = {
                 phone,
                 ensurance,
                 pay,
-                active,
                 createdAt
             });
 

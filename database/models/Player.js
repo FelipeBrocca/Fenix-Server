@@ -53,10 +53,6 @@ const playersSchema = mongoose.Schema({
         },
         required: true
     },
-    active: {
-        type: Boolean,
-        default: true
-    },
     createdAt: {
         type: Object,
         default: {
