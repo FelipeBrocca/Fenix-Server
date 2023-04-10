@@ -26,11 +26,6 @@ const coachSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    ensurance: {
-        type: Boolean,
-        default: false,
-        required: true
-    },
     pay: {
         type: Boolean,
         required: true
