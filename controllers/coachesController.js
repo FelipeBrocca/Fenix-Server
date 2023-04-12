@@ -35,13 +35,14 @@ export const coachesController = {
                 name,
                 birth,
                 dni,
-                club,
-                role,
+                role: roleString,
                 phone,
-                pay,
-                active,
+                pay: payObject,
                 createdAt
             } = req.body;
+
+            const pay = JSON.parse(payObject)
+            const role = JSON.parse(roleString);
 
             let image;
 
@@ -67,11 +68,9 @@ export const coachesController = {
                 image,
                 birth,
                 dni,
-                club,
                 role,
                 phone,
                 pay,
-                active,
                 createdAt
             });
 
@@ -106,8 +105,14 @@ export const coachesController = {
                 coachToUpdate.image = newImage
             }
 
+            let roleUpdate = JSON.parse(req.body.role)
+            const payUpdated = JSON.parse(req.body.pay)
+
             const coachUpdated = {
                 ...req.body,
+                role: roleUpdate,
+                pay: payUpdated,
+                createdAt: createdAtsame,
                 image: coachToUpdate.image
             }
 

@@ -14,12 +14,8 @@ const coachSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    club: {
-        type: String,
-        required: true
-    },
     role: {
-        type: String,
+        type: Array,
         required: true
     },
     phone: {
@@ -27,12 +23,15 @@ const coachSchema = mongoose.Schema({
         required: true
     },
     pay: {
-        type: Boolean,
-        required: true
-    },
-    active:{
-        type: Boolean,
-        default: true
+        type: Object,
+        default:{
+           salary: 0,
+           debt: 0,
+           monthlyPay: false,
+           trainingPay: false,
+           timeMonthly: [],
+           payed: []
+        }
     },
     createdAt: {
         type: Object,
