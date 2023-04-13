@@ -49,7 +49,7 @@ export const coachesController = {
             if (req.files?.image) {
 
                 const imagePosted = await uploadImage(req.files.image.tempFilePath)
-                
+
                 image = {
                     url: imagePosted.secure_url,
                     public_id: imagePosted.public_id
@@ -130,13 +130,15 @@ export const coachesController = {
     },
     deleteCoach: async (req, res) => {
         try {
-            const coachRemoved = await Coach.findByIdAndDelete(req.params.id);
+            const coachRemoved = await Coach.findById(req.params.id);
 
             if (coachRemoved.image.public_id && coachRemoved.image.url !== 'https://res.cloudinary.com/dlah9v2do/image/upload/v1680549252/FotosPerfil/opkjqvstjmumhgz2azvw.png') {
                 await deleteImage(coachRemoved.image.public_id)
             }
-            
-            res.status(204)
+
+            await Coach.deleteOne({ _id: coachRemoved._id })
+
+            res.status(204).send()
         } catch (error) {
             res.status(409).json({
                 message: error.message
