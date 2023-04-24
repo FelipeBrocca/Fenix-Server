@@ -2,14 +2,30 @@ import mongoose from "mongoose";
 
 const trainingsSchema = mongoose.Schema({
     date: {
-       type: Object,
-       required: true
+        type: Object,
+        default: {
+            day: '',
+            since: 0,
+            until: 0
+        },
+        required: true
     },
     techniques: {
         type: String,
+        default: '',
         required: true
     },
-    active:{
+    players: {
+        type: Array,
+        default: [],
+        required: true
+    },
+    coaches: {
+        type: Array,
+        default: [],
+        required: true
+    },
+    active: {
         type: Boolean,
         default: true
     },

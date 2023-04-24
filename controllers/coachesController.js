@@ -38,12 +38,14 @@ export const coachesController = {
                 role: roleString,
                 phone,
                 pay: payObject,
-                createdAt: createdAtString
+                createdAt: createdAtString,
+                ensurance: ensuranceObj
             } = req.body;
 
             const pay = JSON.parse(payObject)
             const role = JSON.parse(roleString);
             const createdAt = JSON.parse(createdAtString)
+            const ensurance = JSON.parse(ensuranceObj)
 
 
             let image;
@@ -73,7 +75,8 @@ export const coachesController = {
                 role,
                 phone,
                 pay,
-                createdAt
+                createdAt,
+                ensurance
             });
 
             await newCoach.save();
@@ -110,6 +113,7 @@ export const coachesController = {
             let roleUpdate = JSON.parse(req.body.role)
             const payUpdated = JSON.parse(req.body.pay)
             const createdAtSame = JSON.parse(req.body.createdAt)
+            const ensuranceUpdated = JSON.parse(req.body.ensurance)
 
 
             const coachUpdated = {
@@ -117,7 +121,8 @@ export const coachesController = {
                 role: roleUpdate,
                 pay: payUpdated,
                 createdAt: createdAtSame,
-                image: coachToUpdate.image
+                image: coachToUpdate.image,
+                ensurance: ensuranceUpdated
             }
 
             const updatedCoach = await Coach.findByIdAndUpdate(req.params.id, coachUpdated, {

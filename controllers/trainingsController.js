@@ -27,16 +27,25 @@ export const trainingsController = {
 
         try {
             const {
-                date,
+                date: dateObj,
                 techniques,
                 active,
-                createdAt
+                createdAt: createdAtObj,
+                players: playersArr,
+                coaches: coachesArr
             } = req.body;
+
+            const date = JSON.parse(dateObj);
+            const createdAt = JSON.parse(createdAtObj)
+            const players = JSON.parse(playersArr)
+            const coaches = JSON.parse(coachesArr)
 
             const newTraining = new Training({
                 date,
                 techniques,
                 active,
+                players,
+                coaches,
                 createdAt
             });
 
@@ -52,9 +61,18 @@ export const trainingsController = {
     updateTraining: async (req, res) => {
         
         try {
+            
+            const dateUpdate = JSON.parse(req.body.date);
+            const createdAtUpdate = JSON.parse(req.body.createdAt)
+            const playersUpdate = JSON.parse(req.body.players)
+            const coachesUpdate = JSON.parse(req.body.coaches)
 
             const trainingUpdated = {
-                ...req.body
+                ...req.body,
+                date: dateUpdate,
+                createdAt: createdAtUpdate,
+                players: playersUpdate,
+                coaches: coachesUpdate
             }
 
             const updatedTraining = await Training.findByIdAndUpdate(req.params.id, trainingUpdated, {
@@ -71,9 +89,13 @@ export const trainingsController = {
     },
     deleteTraining: async (req, res) => {
         try {
-             await Training.findByIdAndDelete(req.params.id);
+            const trainingRemoved =  await Training.findById(req.params.id);
 
-            res.status(204).json({message: 'Training deleted'})
+            if (trainingRemoved) {
+                await Training.deleteOne({_id: trainingRemoved._id})
+            }
+
+            res.status(204).send()
         } catch (error) {
             res.status(409).json({
                 message: error.message

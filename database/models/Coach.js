@@ -22,15 +22,27 @@ const coachSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    ensurance: {
+        type: Object,
+        default: {
+            secured: false,
+            paysec: false,
+            until: {
+                month: '',
+                year: ''
+            }
+        },
+        required: true
+    },
     pay: {
         type: Object,
-        default:{
-           salary: 0,
-           debt: 0,
-           monthlyPay: false,
-           trainingPay: false,
-           timeMonthly: [],
-           payed: []
+        default: {
+            salary: 0,
+            debt: 0,
+            monthlyPay: false,
+            trainingPay: false,
+            timeMonthly: [],
+            payed: []
         }
     },
     createdAt: {
