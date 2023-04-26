@@ -27,18 +27,13 @@ export const trainingsController = {
 
         try {
             const {
-                date: dateObj,
+                date,
                 techniques,
                 active,
-                createdAt: createdAtObj,
-                players: playersArr,
-                coaches: coachesArr
+                createdAt,
+                players,
+                coaches
             } = req.body;
-
-            const date = JSON.parse(dateObj);
-            const createdAt = JSON.parse(createdAtObj)
-            const players = JSON.parse(playersArr)
-            const coaches = JSON.parse(coachesArr)
 
             const newTraining = new Training({
                 date,
