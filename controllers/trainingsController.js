@@ -56,18 +56,8 @@ export const trainingsController = {
     updateTraining: async (req, res) => {
         
         try {
-            
-            const dateUpdate = JSON.parse(req.body.date);
-            const createdAtUpdate = JSON.parse(req.body.createdAt)
-            const playersUpdate = JSON.parse(req.body.players)
-            const coachesUpdate = JSON.parse(req.body.coaches)
-
             const trainingUpdated = {
-                ...req.body,
-                date: dateUpdate,
-                createdAt: createdAtUpdate,
-                players: playersUpdate,
-                coaches: coachesUpdate
+                ...req.body
             }
 
             const updatedTraining = await Training.findByIdAndUpdate(req.params.id, trainingUpdated, {
