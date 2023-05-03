@@ -28,6 +28,7 @@ import playersRoutes from './routes/playersRoutes.js'
 import coachesRoutes from './routes/coachesRoutes.js'
 import trainingsRoutes from './routes/trainingsRoutes.js'
 import clubsRoutes from './routes/clubsRoutes.js'
+import financeRoutes from './routes/financesRoutes.js'
 
 app.use('/', mainRoutes)
 app.use('/auth', authRoutes)
@@ -36,6 +37,7 @@ app.use('/players-hockey', playersRoutes)
 app.use('/coaches-hockey', coachesRoutes)
 app.use('/trainings-hockey', trainingsRoutes)
 app.use('/clubs-hockey', clubsRoutes)
+app.use('/finances-admin', financeRoutes)
 app.all('*', (req, res) => {
     res.status(404)
     if (req.accepts('html')) {
