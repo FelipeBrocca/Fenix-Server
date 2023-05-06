@@ -2,14 +2,19 @@ import mongoose from "mongoose";
 
 const financesSchema = mongoose.Schema({
     month: {
-        type: String,
+        type: Object,
+        default: {
+            value: new Date().getMonth(),
+            month: '',
+            year: new Date().getFullYear()
+        },
         required: true
     },
     billing: {
         type: Object,
         default: {
             coaches: 0,
-            players: 0,
+            secures: 0,
             others: 0
         },
         required: true
@@ -18,7 +23,8 @@ const financesSchema = mongoose.Schema({
         type: Object,
         default: {
             coaches: 0,
-            players: 0,
+            playersXMonth: 0,
+            playersXSession: 0,
             secures: 0,
             others: 0
         },

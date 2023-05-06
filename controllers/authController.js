@@ -27,7 +27,7 @@ export const login = async (req, res) => {
             "user": foundUser._id
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: '1d' }
+        { expiresIn: '7d' }
     )
 
     res.cookie('FJaCwInT', accessToken, {

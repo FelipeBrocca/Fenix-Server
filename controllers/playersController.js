@@ -31,7 +31,7 @@ export const playersController = {
     newPlayer: async (req, res) => {
 
         try {
-            const { name, birth, dni, club, role: roleString, phone, ensurance: ensuranceObject, pay: payObject, createdAt: createdAtString } = req.body;
+            const { name, birth, dni, assistances, club, role: roleString, phone, ensurance: ensuranceObject, pay: payObject, createdAt: createdAtString } = req.body;
             const role = JSON.parse(roleString);
             const ensurance = JSON.parse(ensuranceObject)
             const pay = JSON.parse(payObject)
@@ -52,8 +52,8 @@ export const playersController = {
                 await fs.remove(req.files.image.tempFilePath)
             } else {
                 image = {
-                    url: 'https://res.cloudinary.com/dlah9v2do/image/upload/v1680549252/FotosPerfil/opkjqvstjmumhgz2azvw.png',
-                    public_id: 'FotosPerfil/opkjqvstjmumhgz2azvw'
+                    url: 'https://res.cloudinary.com/dlah9v2do/image/upload/v1683205966/FotosPerfil/qwloglssre2ryz5mgu9k.png',
+                    public_id: "FotosPerfil/qwloglssre2ryz5mgu9k"
                 }
             }
 
@@ -66,6 +66,7 @@ export const playersController = {
                 role,
                 phone,
                 ensurance,
+                assistances,
                 pay,
                 createdAt
             });
@@ -131,7 +132,7 @@ export const playersController = {
         try {
             const playerRemoved = await Player.findById(req.params.id);
 
-            if (playerRemoved.image.public_id && playerRemoved.image.url !== 'https://res.cloudinary.com/dlah9v2do/image/upload/v1680549252/FotosPerfil/opkjqvstjmumhgz2azvw.png') {
+            if (playerRemoved.image.public_id && playerRemoved.image.url !== 'https://res.cloudinary.com/dlah9v2do/image/upload/v1683205966/FotosPerfil/qwloglssre2ryz5mgu9k.png') {
                 await deleteImage(playerRemoved.image.public_id)
             }
 

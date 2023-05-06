@@ -25,9 +25,9 @@ export const financesController = {
     },
     newFinance: async (req, res) => {
         try {
-            const { finance } = req.body;
+            const finance = req.body;
 
-            const newFinance = new Finance({ finance })
+            const newFinance = new Finance(finance)
 
             await newFinance.save()
 
