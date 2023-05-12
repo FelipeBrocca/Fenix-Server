@@ -23,7 +23,6 @@ const financesSchema = mongoose.Schema({
         type: Object,
         default: {
             coaches: 0,
-            playersXMonth: 0,
             playersXSession: 0,
             secures: 0,
             others: 0

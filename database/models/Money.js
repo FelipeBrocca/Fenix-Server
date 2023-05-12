@@ -5,8 +5,8 @@ const moneysSchema = mongoose.Schema({
         type: Object,
         default: {
             coachesSalary: 0,
-            playerMonthly: 0,
-            playerSession: 0
+            playerSession: 0,
+            secure: 0
         }
     },
     createdAt: {

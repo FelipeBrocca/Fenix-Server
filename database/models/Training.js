@@ -16,8 +16,11 @@ const trainingsSchema = mongoose.Schema({
         required: true
     },
     players: {
-        type: Array,
-        default: [],
+        type: Object,
+        default: {
+            paid: [],
+            assist: []
+        },
         required: true
     },
     coaches: {

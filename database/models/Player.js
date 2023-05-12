@@ -41,15 +41,7 @@ const playersSchema = mongoose.Schema({
     pay: {
         type: Object,
         default: {
-            monthsPayed: [],
-            trainsPayed: {
-                quantity: 0
-            },
-            createdAt: {
-                day: new Date().getDate(),
-                month: new Date().getMonth() + 1,
-                year: new Date().getFullYear()
-            }
+            trainsPayed: [],
         },
         required: true
     },
