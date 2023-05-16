@@ -37,19 +37,12 @@ const coachSchema = mongoose.Schema({
     pay: {
         type: Object,
         default: {
-            dateDebt:[{
-                date: '',
-                hours: 0,
-                money: 0
-            }],
-            totalDebt: {
-                hours: 0,
-                money: 0
-            },
-            payed: [{
-                date: '',
-                money: 0
-            }]
+            trainingsMang: [
+                // {
+                //     tr_id: '',
+                //     statusPay: false 
+                // }
+            ]
         }
     },
     createdAt: {
