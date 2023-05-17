@@ -48,11 +48,11 @@ export const playersController = {
                     url: imagePosted.secure_url,
                     public_id: imagePosted.public_id
                 }
-
+            
                 await fs.remove(req.files.image.tempFilePath)
             } else {
                 image = {
-                    url: 'https://res.cloudinary.com/dlah9v2do/image/upload/v1683205966/FotosPerfil/qwloglssre2ryz5mgu9k.png',
+                    url: 'https://res.cloudinary.com/dlah9v2do/image/upload/v1684277158/userimage_wmdcqv.png',
                     public_id: "FotosPerfil/qwloglssre2ryz5mgu9k"
                 }
             }
@@ -132,7 +132,7 @@ export const playersController = {
         try {
             const playerRemoved = await Player.findById(req.params.id);
 
-            if (playerRemoved.image.public_id && playerRemoved.image.url !== 'https://res.cloudinary.com/dlah9v2do/image/upload/v1683205966/FotosPerfil/qwloglssre2ryz5mgu9k.png') {
+            if (playerRemoved.image.public_id && playerRemoved.image.url !== 'https://res.cloudinary.com/dlah9v2do/image/upload/v1684277158/userimage_wmdcqv.png') {
                 await deleteImage(playerRemoved.image.public_id)
             }
 
