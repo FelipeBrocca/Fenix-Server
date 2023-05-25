@@ -32,6 +32,14 @@ const trainingsSchema = mongoose.Schema({
         type: Boolean,
         default: true
     },
+    field: {
+        type: Object,
+        default: {
+            field: '',
+            cost: 0
+        },
+        required: true
+    },
     createdAt: {
         type: Object,
         default: {

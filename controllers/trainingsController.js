@@ -32,7 +32,8 @@ export const trainingsController = {
                 active,
                 createdAt,
                 players,
-                coaches
+                coaches,
+                field
             } = req.body;
 
             const newTraining = new Training({
@@ -41,6 +42,7 @@ export const trainingsController = {
                 active,
                 players,
                 coaches,
+                field,
                 createdAt
             });
 

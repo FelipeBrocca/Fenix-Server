@@ -31,11 +31,12 @@ export const playersController = {
     newPlayer: async (req, res) => {
 
         try {
-            const { name, birth, dni, assistances, club, role: roleString, phone, ensurance: ensuranceObject, pay: payObject, createdAt: createdAtString } = req.body;
+            const { name, birth, dni, assistances: assisArray, club, role: roleString, phone, ensurance: ensuranceObject, pay: payObject, createdAt: createdAtString } = req.body;
             const role = JSON.parse(roleString);
             const ensurance = JSON.parse(ensuranceObject)
             const pay = JSON.parse(payObject)
             const createdAt = JSON.parse(createdAtString)
+            const assistances = JSON.parse(assisArray)
             
 
             let image;
@@ -105,6 +106,7 @@ export const playersController = {
             const ensuranceUpdated = JSON.parse(req.body.ensurance)
             const payUpdated = JSON.parse(req.body.pay)
             const createdAtsame = JSON.parse(req.body.createdAt)
+            const assistances = JSON.parse(req.body.assistances)
 
 
             const playerUpdated = {
@@ -113,6 +115,7 @@ export const playersController = {
                 ensurance: ensuranceUpdated,
                 pay: payUpdated,
                 createdAt: createdAtsame,
+                assistances: assistances,
                 image: playerToUpdate.image
             }
 

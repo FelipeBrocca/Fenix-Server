@@ -46,8 +46,8 @@ const playersSchema = mongoose.Schema({
         required: true
     },
     assistances: {
-        type: Number,
-        default: 0
+        type: Array,
+        default: []
     },
     createdAt: {
         type: Object,
