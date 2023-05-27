@@ -62,7 +62,7 @@ export const coachesController = {
                 await fs.remove(req.files.image.tempFilePath)
             } else {
                 image = {
-                    url: 'https://res.cloudinary.com/dlah9v2do/image/upload/v1683205966/FotosPerfil/qwloglssre2ryz5mgu9k.png',
+                    url: 'https://res.cloudinary.com/dlah9v2do/image/upload/v1684277158/userimage_wmdcqv.png',
                     public_id: "FotosPerfil/qwloglssre2ryz5mgu9k"
                 }
             }
@@ -141,7 +141,7 @@ export const coachesController = {
         try {
             const coachRemoved = await Coach.findById(req.params.id);
 
-            if (coachRemoved.image.public_id && coachRemoved.image.url !== 'https://res.cloudinary.com/dlah9v2do/image/upload/v1683205966/FotosPerfil/qwloglssre2ryz5mgu9k.png') {
+            if (coachRemoved.image.public_id && coachRemoved.image.url !== 'https://res.cloudinary.com/dlah9v2do/image/upload/v1684277158/userimage_wmdcqv.png') {
                 await deleteImage(coachRemoved.image.public_id)
             }
 
