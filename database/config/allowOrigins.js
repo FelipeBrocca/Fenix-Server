@@ -1,3 +1,3 @@
 export const allowOrigins = [
-    'http://localhost:3000'
+    'https://fenix-academia-eta.vercel.app/'
 ]
