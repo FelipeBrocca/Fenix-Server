@@ -1,3 +1,3 @@
 export const allowOrigins = [
-    'https://fenix-academia-eta.vercel.app/'
+    'https://www.fenix-academia-eta.vercel.app/'
 ]
