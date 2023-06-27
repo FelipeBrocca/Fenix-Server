@@ -2,29 +2,26 @@ import mongoose from "mongoose";
 
 const playersSchema = mongoose.Schema({
     name: {
-        type: String,
-        required: true
+        type: String
     },
-    image: Object,
+    image: {
+        type: Object,
+        default: null
+    },
     birth: {
-        type: Date,
-        required: true
+        type: Date
     },
     dni: {
-        type: String,
-        required: true
+        type: String
     },
     club: {
-        type: String,
-        required: true
+        type: String
     },
     role: {
-        type: Array,
-        required: true
+        type: Array
     },
     phone: {
-        type: String,
-        required: true
+        type: String
     },
     ensurance: {
         type: Object,
@@ -35,15 +32,13 @@ const playersSchema = mongoose.Schema({
                 month: '',
                 year: ''
             }
-        },
-        required: true
+        }
     },
     pay: {
         type: Object,
         default: {
             trainsPayed: [],
-        },
-        required: true
+        }
     },
     assistances: {
         type: Array,

@@ -51,12 +51,13 @@ export const playersController = {
                 }
             
                 await fs.remove(req.files.image.tempFilePath)
-            } else {
-                image = {
-                    url: 'https://res.cloudinary.com/dlah9v2do/image/upload/v1684277158/userimage_wmdcqv.png',
-                    public_id: "FotosPerfil/qwloglssre2ryz5mgu9k"
-                }
-            }
+            } 
+            // else {
+            //     image = {
+            //         url: 'https://res.cloudinary.com/dlah9v2do/image/upload/v1684277158/userimage_wmdcqv.png',
+            //         public_id: "FotosPerfil/qwloglssre2ryz5mgu9k"
+            //     }
+            // }
 
             const newPlayer = new Player({
                 name,
@@ -135,7 +136,7 @@ export const playersController = {
         try {
             const playerRemoved = await Player.findById(req.params.id);
 
-            if (playerRemoved.image.public_id && playerRemoved.image.url !== 'https://res.cloudinary.com/dlah9v2do/image/upload/v1684277158/userimage_wmdcqv.png') {
+            if (playerRemoved.image !== null && playerRemoved.image.public_id && playerRemoved.image.url !== 'https://res.cloudinary.com/dlah9v2do/image/upload/v1684277158/userimage_wmdcqv.png') {
                 await deleteImage(playerRemoved.image.public_id)
             }
 

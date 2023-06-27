@@ -2,25 +2,23 @@ import mongoose from "mongoose";
 
 const coachSchema = mongoose.Schema({
     name: {
-        type: String,
-        required: true
+        type: String
     },
-    image: Object,
+    image: {
+        type: Object,
+        default: null
+    },
     birth: {
-        type: String,
-        required: true
+        type: String
     },
     dni: {
-        type: String,
-        required: true
+        type: String
     },
     role: {
-        type: Array,
-        required: true
+        type: Array
     },
     phone: {
-        type: String,
-        required: true
+        type: String
     },
     ensurance: {
         type: Object,
@@ -31,17 +29,12 @@ const coachSchema = mongoose.Schema({
                 month: '',
                 year: ''
             }
-        },
-        required: true
+        }
     },
     pay: {
         type: Object,
         default: {
             trainingsMang: [
-                // {
-                //     tr_id: '',
-                //     statusPay: false 
-                // }
             ]
         }
     },
